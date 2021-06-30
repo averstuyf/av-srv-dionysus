@@ -42,16 +42,31 @@ services:
 
     # https://hub.docker.com/r/homeassistant/home-assistant
     # https://www.home-assistant.io/installation/linux
-    homeassistant:
-        container_name: homeassistant
-        image: homeassistant/home-assistant:stable
+    # homeassistant:
+    #     container_name: homeassistant
+    #     image: homeassistant/home-assistant:stable
+    #     restart: unless-stopped
+    #     # networks:
+    #     #     - frontend
+    #     volumes:
+    #         - /var/lib/homeassistant:/config
+    #         - /etc/localtime:/etc/localtime:ro
+    #     network_mode: host
+
+    # https://hub.docker.com/r/oznu/homebridge
+    homebridge:
+        container_name: homebridge
+        image: oznu/homebridge:latest
         restart: unless-stopped
-        # networks:
-        #     - frontend
-        volumes:
-            - /var/lib/homeassistant:/config
-            - /etc/localtime:/etc/localtime:ro
         network_mode: host
+        environment:
+            - PGID=1000
+            - PUID=1000
+            - HOMEBRIDGE_CONFIG_UI=1
+            - HOMEBRIDGE_CONFIG_UI_PORT=8581
+            - TZ=US/Pacific
+        volumes:
+            - /var/lib/homebridge:/homebridge
 
 networks:
     frontend:
