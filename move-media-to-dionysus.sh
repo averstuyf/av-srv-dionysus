@@ -2,8 +2,12 @@
 VERSION="2"
 
 SOURCES=(
-    $HOME/downloads/plex/
-    $HOME/downloads/bits/plex/
+    $HOME/downloads/dionysus-later/
+    $HOME/downloads/bits/dionysus-later/
+    $HOME/downloads/dionysus-template/
+    $HOME/downloads/bits/dionysus-template/
+    $HOME/downloads/dionysus/
+    $HOME/downloads/bits/dionysus/
     )
 
 for source in "${SOURCES[@]}"; do
