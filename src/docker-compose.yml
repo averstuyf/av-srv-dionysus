@@ -38,7 +38,6 @@ services:
         volumes:
             - /var/lib/plex:/config
             - /srv/media:/plexdata
-            # - ./logs:/logs
 
     # https://hub.docker.com/r/homeassistant/home-assistant
     # https://www.home-assistant.io/installation/linux
@@ -68,6 +67,52 @@ services:
         volumes:
             - /var/lib/homebridge:/homebridge
 
+    # https://hub.docker.com/_/adminer
+    # adminer:
+    #     container_name: adminer
+    #     image: adminer
+    #     restart: unless-stopped
+    #     logging:
+    #         options:
+    #             max-size: 1m
+    #             max-file: "5"
+    #     ports:
+    #         - 8080:8080
+    #     networks:
+    #         - frontend
+    #         - backend
+    #     depends_on:
+    #         - mariadb
+
+    # https://hub.docker.com/_/mariadb
+    # mariadb:
+    #     container_name: mariadb
+    #     # https://endoflife.date/mariadb
+    #     # Ends June 2025
+    #     image: mariadb:10.5
+    #     restart: always
+    #     logging:
+    #         options:
+    #             max-size: 1m
+    #             max-file: "5"
+    #     networks:
+    #         - backend
+    #     environment:
+    #         MYSQL_PASSWORD_FILE: /run/secrets/mariadb_password
+    #         MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mariadb_root_password
+    #         MYSQL_USER: dionysus
+    #     volumes:
+    #         - /var/lib/mariadb:/var/lib/mysql
+    #     secrets:
+    #         - mariadb_root_password
+    #         - mariadb_password
+
 networks:
     frontend:
-    #backend:
+    backend:
+
+secrets:
+    mariadb_root_password:
+        file: mariadb_root_password.txt
+    mariadb_password:
+        file: mariadb_password.txt
