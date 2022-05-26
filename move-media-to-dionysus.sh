@@ -10,7 +10,8 @@ SOURCES=(
     $HOME/downloads/bits/dionysus/
     )
 
-for source in "${SOURCES[@]}"; do
+for source in "${SOURCES[@]}"
+do
     # Guard against the source directory not existing
     [ ! -d "$source" ] && continue
 
