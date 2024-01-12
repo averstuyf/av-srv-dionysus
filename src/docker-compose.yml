@@ -29,15 +29,15 @@ services:
             - /srv/media:/data
 
     # https://github.com/NitriKx/docker-Plex-Cleaner
-    plex-cleaner:
-        image: nitrikx/plex-cleaner
-        container_name: plex-cleaner
-        environment:
-            # Execute the script at 7pm on the first of every month
-            - EXECUTION_CRON_EXPRESSION=0 19 1 * *
-        volumes:
-            - /var/lib/plex:/config
-            - /srv/media:/plexdata
+    # plex-cleaner:
+    #     image: nitrikx/plex-cleaner
+    #     container_name: plex-cleaner
+    #     environment:
+    #         # Execute the script at 7pm on the first of every month
+    #         - EXECUTION_CRON_EXPRESSION=0 19 1 * *
+    #     volumes:
+    #         - /var/lib/plex:/config
+    #         - /srv/media:/plexdata
 
     # https://hub.docker.com/r/homeassistant/home-assistant
     # https://www.home-assistant.io/installation/linux
@@ -52,20 +52,35 @@ services:
     #         - /etc/localtime:/etc/localtime:ro
     #     network_mode: host
 
-    # https://hub.docker.com/r/oznu/homebridge
     homebridge:
         container_name: homebridge
-        image: oznu/homebridge:latest
+        image: homebridge/homebridge:latest
         restart: unless-stopped
         network_mode: host
         environment:
-            - PGID=1000
-            - PUID=1000
-            - HOMEBRIDGE_CONFIG_UI=1
-            - HOMEBRIDGE_CONFIG_UI_PORT=8581
             - TZ=US/Pacific
         volumes:
             - /var/lib/homebridge:/homebridge
+        logging:
+            driver: json-file
+            options:
+                max-size: "10mb"
+                max-file: "1"
+
+    # https://hub.docker.com/r/oznu/homebridge
+    # homebridge:
+    #     container_name: homebridge
+    #     image: oznu/homebridge:latest
+    #     restart: unless-stopped
+    #     network_mode: host
+    #     environment:
+    #         - PGID=1000
+    #         - PUID=1000
+    #         - HOMEBRIDGE_CONFIG_UI=1
+    #         - HOMEBRIDGE_CONFIG_UI_PORT=8581
+    #         - TZ=US/Pacific
+    #     volumes:
+    #         - /var/lib/homebridge:/homebridge
 
     # https://hub.docker.com/_/adminer
     # adminer:
