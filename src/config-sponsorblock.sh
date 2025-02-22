@@ -1,0 +1,1 @@
+sudo docker run --rm -it -v /var/lib/sponsorblock:/app/data --net=host -e TERM=$TERM -e COLORTERM=$COLORTERM ghcr.io/dmunozv04/isponsorblocktv --setup

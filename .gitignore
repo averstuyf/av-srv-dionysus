@@ -1,0 +1,32 @@
+# Ignore all log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+
+# Ignore compiled binaries
+*.o
+*.out
+*.exe
+
+# Ignore directories
+node_modules/
+dist/
+build/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore shell history files
+.history
+.bash_history
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore backup files
+*~

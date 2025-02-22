@@ -1,8 +1,10 @@
 #!/bin/sh
 VERSION="2"
 
+set -e
+
 SOURCES=(
-    $HOME/downloads/dionysus-later/
+    $HOME/downloads/bits/dionysus-template/
     $HOME/downloads/bits/dionysus-later/
     $HOME/downloads/dionysus-template/
     $HOME/downloads/bits/dionysus-template/
@@ -12,7 +14,7 @@ SOURCES=(
 
 for source in "${SOURCES[@]}"
 do
-    # Guard against the source directory not existing
+    # Guard against the sourceblaster directory not existing
     [ ! -d "$source" ] && continue
 
     echo "Processing, source: $source"
@@ -24,3 +26,4 @@ do
     # Delete the empty source directories
     find "$source" -depth -type d -empty -delete
 done
+
